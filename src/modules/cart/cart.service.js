@@ -41,6 +41,23 @@ function addItem(userId, { productId, quantity } = {}) {
   return getCart(userId);
 }
 
+
+
+function addItem(userId, { productId, quantity } = {}) {
+  const product = products.get(productId);
+  if (!Number.isInteger(quantity) || quantity < 1) throw new HttpError(400, 'Quantity must be a whole number of at least 1');
+  const cart = rawCart(userId);
+  const existing = cart.find((entry) => entry.productId === product.id);
+  const newQuantity = (existing ? existing.quantity : 0) + quantity;
+  if (newQuantity > product.stock) throw new HttpError(409, 'Not enough stock');
+  if (existing) {
+    existing.quantity = newQuantity;
+  } else {
+    cart.push({ productId: product.id, quantity });
+  }
+  return getCart(userId);
+}
+
 function removeItem(userId, productId) {
   const cart = rawCart(userId);
   const index = cart.findIndex((entry) => entry.productId === Number(productId));
