@@ -26,6 +26,78 @@ function getCart(userId) {
   return { items, subtotal };
 }
 
+
+function getCartItems(userId) {
+  return rawCart(userId).map((entry) => {
+    const product = products.get(entry.productId);
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: entry.quantity,
+      lineTotal: product.price * entry.quantity,
+    };
+  });
+}
+
+
+
+function getCartItems(userId) {
+  return rawCart(userId).map((entry) => {
+    const product = products.get(entry.productId);
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: entry.quantity,
+      lineTotal: product.price * entry.quantity,
+    };
+  });
+}
+
+
+
+function getCartItems(userId) {
+  return rawCart(userId).map((entry) => {
+    const product = products.get(entry.productId);
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: entry.quantity,
+      lineTotal: product.price * entry.quantity,
+    };
+  });
+}
+
+
+
+function getCartItems(userId) {
+  return rawCart(userId).map((entry) => {
+    const product = products.get(entry.productId);
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: entry.quantity,
+      lineTotal: product.price * entry.quantity,
+    };
+  });
+}
+function getCartItems(userId) {
+  return rawCart(userId).map((entry) => {
+    const product = products.get(entry.productId);
+    return {
+      productId: product.id,
+      name: product.name,
+      price: product.price,
+      quantity: entry.quantity,
+      lineTotal: product.price * entry.quantity,
+    };
+  });
+}
+
+
 function addItem(userId, { productId, quantity } = {}) {
   const product = products.get(productId);
   if (!Number.isInteger(quantity) || quantity < 1) throw new HttpError(400, 'Quantity must be a whole number of at least 1');
